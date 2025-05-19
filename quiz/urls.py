@@ -1,3 +1,5 @@
+"""Маршруты URL для приложения тренажера."""
+
 from django.urls import path
 from . import views
 
