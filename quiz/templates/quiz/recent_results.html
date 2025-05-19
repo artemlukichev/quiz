@@ -1,0 +1,39 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<h2>Последние выполненные задания</h2>
+
+{% if results %}
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Название задачи</th>
+            <th>Ответ пользователя</th>
+            <th>Правильный ответ</th>
+            <th>Результат</th>
+            <th>Дата выполнения</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.task.title }}</td>
+            <td>{{ result.user_answer }}</td>
+            <td>{{ result.task.correct_answer }}</td>
+            <td>
+                {% if result.is_correct %}
+                    ✅ Верно
+                {% else %}
+                    ❌ Неверно
+                {% endif %}
+            </td>
+            <td>{{ result.created_at|date:"Y-m-d H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Пока нет выполненных заданий.</p>
+{% endif %}
+
+{% endblock %}

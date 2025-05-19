@@ -1,0 +1,24 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<h2>{{ task.title }}</h2>
+<p>{{ task.question }}</p>
+<ul>
+    <li>{{ task.option1 }}</li>
+    <li>{{ task.option2 }}</li>
+    <li>{{ task.option3 }}</li>
+</ul>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ответить</button>
+</form>
+
+{% if result is not None %}
+    {% if result %}
+        <p class="correct">Правильно!</p>
+    {% else %}
+        <p class="incorrect">Неправильно. Правильный ответ: {{ task.correct_answer }}</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

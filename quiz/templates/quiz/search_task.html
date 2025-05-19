@@ -1,0 +1,16 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<h2>Поиск задачи</h2>
+<form method="get">
+    <input type="text" name="q" value="{{ query }}" placeholder="Введите название" required>
+    <button type="submit">Поиск</button>
+</form>
+<ul>
+    {% for task in tasks %}
+        <li><a href="{% url 'answer_task' task.pk %}">{{ task.title }}</a></li>
+    {% empty %}
+        <li>Ничего не найдено</li>
+    {% endfor %}
+</ul>
+{% endblock %}

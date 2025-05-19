@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Quiz App</h1>
+    <nav>
+        <a href="{% url 'add_task' %}">Добавить задачу</a> |
+        <a href="{% url 'task_list' %}">Все задачи</a> |
+        <a href="{% url 'search_task' %}">Поиск</a> |
+        <a href="{% url 'search_by_subject' %}">Предметы</a> |
+        <a href="{% url 'recent_results' %}">Последние результаты</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

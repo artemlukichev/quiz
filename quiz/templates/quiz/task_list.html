@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<h2>Все задачи</h2>
+
+{% for subject, tasks in tasks_by_subject.items %}
+    <h3>{{ subject }}</h3>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> —
+                <a href="{% url 'answer_task' task.pk %}">Решить</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+{% endblock %}

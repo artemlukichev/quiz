@@ -1,0 +1,17 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<h2>Результат</h2>
+
+<p><strong>Задание:</strong> {{ task.title }}</p>
+<p><strong>Ваш ответ:</strong> {{ user_answer }}</p>
+<p><strong>Правильный ответ:</strong> {{ task.correct_answer }}</p>
+
+{% if is_correct %}
+    <p style="color: green;"><strong>✅ Ответ верный!</strong></p>
+{% else %}
+    <p style="color: red;"><strong>❌ Ответ неверный.</strong></p>
+{% endif %}
+
+<p><a href="{% url 'task_list' %}">← Назад к списку заданий</a></p>
+{% endblock %}
