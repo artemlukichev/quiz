@@ -33,9 +33,10 @@ def answer_task(request, task_id):
     result = None
 
     if request.method == 'POST':
-        form = AnswerForm(request.POST)
+        valid_options = [task.option1, task.option2, task.option3]
+        form = AnswerForm(request.POST, valid_options=valid_options)
         if form.is_valid():
-            user_answer = form.cleaned_data['answer']
+            user_answer = form.cleaned_data['user_answer']
             is_correct = user_answer == task.correct_answer
             TaskResult.objects.create(  # pylint: disable=no-member
                 task=task,
@@ -44,7 +45,8 @@ def answer_task(request, task_id):
             )
             result = is_correct
     else:
-        form = AnswerForm()
+        valid_options = [task.option1, task.option2, task.option3]
+        form = AnswerForm(valid_options=valid_options)
 
     return render(request, 'quiz/answer_task.html', {
         'task': task,
